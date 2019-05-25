@@ -18,6 +18,10 @@ public class ArticleDao {
 
 	static final String ADD_ARTICLE = "insert article(title,content,userId,name) values(?,?,?,?)";
 
+	static final String UPDATE_ARTICLE = "update article set title=?, content=? where articleId=?";
+
+	static final String DELETE_ARTICLE = "delete from article where articleId=?";
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
@@ -41,5 +45,13 @@ public class ArticleDao {
 	public int addArticle(Article article) {
 		return jdbcTemplate.update(ADD_ARTICLE, article.getTitle(),
 				article.getContent(), article.getUserId(), article.getName());
+	}
+	
+	public void updateArticle(Article article) {
+		jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(),article.getContent(),article.getArticleId());
+}
+
+	public void deleteArticle(Article article) {
+		jdbcTemplate.update(DELETE_ARTICLE, article.getArticleId());
 	}
 }
