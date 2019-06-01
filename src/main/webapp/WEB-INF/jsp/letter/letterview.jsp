@@ -17,8 +17,14 @@
 	</p>
 	<p>
 		<span>${letter.cdate }</span> | 
-		<span>${letter.senderName }, ${letter.senderId }</span>
+		<c:choose>
+		<c:when test="${letter.senderName}">
 		<span>${letter.receiverName }, ${letter.receiverId }</span>
+		</c:when>
+		<c:otherwise>  
+		<span>${letter.senderName }, ${letter.senderId }</span>
+		</c:otherwise>
+		</c:choose>
 	</p>
 	<hr />
 	<p>${letter.contentHtml}</p>
